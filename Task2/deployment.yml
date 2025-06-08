@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scaletest
+  namespace: default
+  labels:
+    app: scaletest
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: scaletest
+  template:
+    metadata:
+      labels:
+        app: scaletest
+    spec:
+      containers:
+      - name: scaletest
+        image: shestera/scaletestapp:latest
+        resources:
+          requests:
+            memory: "10Mi"
+          limits:
+            memory: "30Mi"
